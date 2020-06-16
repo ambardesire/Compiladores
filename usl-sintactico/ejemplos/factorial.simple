@@ -1,0 +1,17 @@
+--- 
+    Este es un programa que calcula el factorial 
+    de de un numero n entero.
+---
+
+{
+	n=5;
+	i=1;
+	facto=1;
+
+	mientras i <= 5
+	{
+      facto=facto*i;
+      i= i+ 1;
+    }
+    despliega (facto);  
+}

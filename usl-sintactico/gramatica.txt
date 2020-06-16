@@ -1,0 +1,21 @@
+programa -> declaracionesGlob bloquePpal
+
+declaracionesGlob -> declaVar...
+                  |     /*Puede ser la cadena vacía */ 
+
+sentencia -> asignacion
+          |  definicionFuncion
+          |  siOtro
+          | mientras
+          | despliega
+          ...
+
+bloqueSent -> LLAVEIZQ  ... LLAVEDER   /* VS*/
+bloqueSent -> "{" ... "}"
+ 
+exp -> NUM
+    |  ID
+    |  exp '+' exp
+    ...
+
+
