@@ -1,0 +1,4 @@
+{	
+   ---Primer programa: Hola mundo. ---
+	despliega ('Hola mundo \n');
+}
