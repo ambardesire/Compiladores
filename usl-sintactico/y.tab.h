@@ -51,13 +51,13 @@ extern int yydebug;
     DESPLIEGA = 261,
     REGRESA = 262,
     TIPOENT = 263,
-    NOT = 264,
-    OR = 265,
-    AND = 266,
-    SI = 267,
-    OTRO = 268,
-    MIENTRAS = 269,
-    DEFINEF = 270,
+    SI = 264,
+    OTRO = 265,
+    MIENTRAS = 266,
+    DEFINEF = 267,
+    NOT = 268,
+    OR = 269,
+    AND = 270,
     DIFER = 271,
     IGUAL = 272,
     MAYORQUE = 273,
@@ -73,13 +73,13 @@ extern int yydebug;
 #define DESPLIEGA 261
 #define REGRESA 262
 #define TIPOENT 263
-#define NOT 264
-#define OR 265
-#define AND 266
-#define SI 267
-#define OTRO 268
-#define MIENTRAS 269
-#define DEFINEF 270
+#define SI 264
+#define OTRO 265
+#define MIENTRAS 266
+#define DEFINEF 267
+#define NOT 268
+#define OR 269
+#define AND 270
 #define DIFER 271
 #define IGUAL 272
 #define MAYORQUE 273
@@ -92,7 +92,7 @@ extern int yydebug;
 
 union YYSTYPE
 {
-#line 37 "simple.y" /* yacc.c:1909  */
+#line 39 "simple.y" /* yacc.c:1909  */
 
   int ival;
   char *sval;
