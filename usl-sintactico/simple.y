@@ -119,8 +119,4 @@ parami:
 
 lparami:
 	| ',' exp lparami
-<<<<<<< HEAD
-	;
-=======
-	;
->>>>>>> e9a7dee197264d2330c4280f4ffb9181d18de6f6
+;
