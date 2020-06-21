@@ -17,7 +17,7 @@ string toknames[] = {"ID", "CADE", "ENTERO","DESPLIEGA","SI",
 					 "COMENTARIO","FINDEC","ABRECOR","CIERRACOR",
 					 "ABREPAR","CIERRAPAR","DEVUELVE","SUMA",
 					 "RESTA","MULTIPLICA","DIVIDE","MAYORQUE",
-					 "MENORQUE","MAYORIGUAL","MENORIGUAL",};
+					 "MENORQUE","MAYORIGUAL","MENORIGUAL", "TIPOENT"};
 
 
 string tokname(int tok) {

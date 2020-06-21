@@ -35,5 +35,6 @@ typedef union {
 #define MENORQUE  285
 #define MAYORIGUAL 286
 #define MENORIGUAL 287
+#define TIPOENT    288
 extern YYSTYPE yylval;
 #endif

@@ -22,13 +22,15 @@ void yyerror(char *s)
 %token  DESPLIEGA
 %token  REGRESA
 %token  TIPOENT
-%nonassoc  NOT OR AND
 %nonassoc  SI
 %nonassoc  OTRO
 %nonassoc  MIENTRAS
 %nonassoc  DEFINEF
 
 %right  '='
+%right  NOT
+%left  OR
+%left  AND
 %right  DIFER IGUAL MAYORQUE MENORQUE MAYORIGUAL MENORIGUAL
 %left  '+' '-'
 %left  '*' '/'
@@ -63,21 +65,20 @@ bloques:
 	| sent bloques
 ;
 
-sent: 
-	| DESPLIEGA '(' exp ')' ';'
+sent: DESPLIEGA '(' exp ')' ';'
 	| DESPLIEGA '(' CADE ')' ';' 
-    | SI '(' exp ')' sent %prec SI 
-    | SI '(' exp ')' sent OTRO sent
-    | SI  exp  sent %prec SI 
-    | SI  exp  sent OTRO sent
-    | SI '(' exp ')' '{' bloques '}' %prec SI 
-    | SI '(' exp ')' '{' bloques '}' OTRO sent
-    | SI  exp  '{' bloques '}' %prec SI 
-    | SI  exp  '{' bloques '}' OTRO sent
-    | MIENTRAS '(' exp ')' sent %prec MIENTRAS 
-    | MIENTRAS  exp  sent %prec MIENTRAS 
-    | MIENTRAS '(' exp ')' '{' bloques '}' %prec MIENTRAS 
-    | MIENTRAS  exp  '{' bloques '}' %prec MIENTRAS 
+    | SI '(' logexp ')' sent %prec SI 
+    | SI '(' logexp ')' sent OTRO sent
+    | SI  logexp  sent %prec SI 
+    | SI  logexp  sent OTRO sent
+    | SI '(' logexp ')' '{' bloques '}' %prec SI 
+    | SI '(' logexp ')' '{' bloques '}' OTRO sent
+    | SI  logexp  '{' bloques '}' %prec SI 
+    | SI  logexp  '{' bloques '}' OTRO sent
+    | MIENTRAS '(' logexp ')' sent %prec MIENTRAS 
+    | MIENTRAS  logexp  sent %prec MIENTRAS 
+    | MIENTRAS '(' logexp ')' '{' bloques '}' %prec MIENTRAS 
+    | MIENTRAS  logexp  '{' bloques '}' %prec MIENTRAS 
     | ID '=' exp ';'
     | REGRESA exp ';'
     | ID '(' parami ')' ';'
@@ -90,26 +91,32 @@ exp: ENTERO
 	| exp '-' exp
 	| exp '*' exp
 	| exp '/' exp
-	| exp AND exp
-	| exp OR exp
-	| NOT exp
 	| '(' exp ')'
+   ;
+
+logexp: logexp AND logexp
+	| logexp OR logexp
+	| NOT logexp
 	| exp IGUAL exp
 	| exp DIFER exp
 	| exp MAYORQUE exp
 	| exp MENORQUE exp
 	| exp MAYORIGUAL exp
 	| exp MENORIGUAL exp
-   ;
+	;
 
 paramd:
-	| ID
-	| ID ',' paramd
+	| ID lparam
 ;
 
+lparam:
+	| ',' ID lparam
+	;
+
 parami:
-	| exp
-	| exp ',' parami
-	| ID
-	| ID ',' parami
+	| exp lparami
 ;
+
+lparami:
+	| ',' exp lparami
+	;
