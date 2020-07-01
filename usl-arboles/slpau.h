@@ -26,13 +26,13 @@ typedef struct A_lparami_ *A_lparami;
 typedef enum {A_mas,A_menos,A_por,A_entre} A_opbin;
 typedef enum {A_igual,A_difer,A_mayor,A_menor,A_mayori,A_menori} A_explog;
 typedef enum {A_and,A_or} A_oplog;
-
-struct A_programi_ {enum {A_Inicial} clase;
-            union {struct{A_decla declaraciones ;A_bloq codigo;} programa;
+//-------------------------------------------------------------------------------
+struct A_programi_ {enum {A_inicial} clase;
+            union {struct{A_decla declaraciones; A_bloq codigo;} programa;
             }u;
 };
 
-A_programi_ A_Inicial(A_decla declaraciones ,A_bloq codigo);
+A_programi A_Inicial(A_decla declaraciones, A_bloq codigo);
 /*--------------------------------------------------------------------------------
 Los nodos de un arbol se definen polimorficamente. Estan formados por:
 - Un indicador de cual es el tipo de nodo que estamos creando (dependiendo del tipo
@@ -53,7 +53,7 @@ struct A_sent_ {enum {A_sentAsigna, A_sentDespl,A_sentDesplS,A_sentSi,A_sentSiOt
                     struct {A_logexp exp; A_bloq sent1, sent2;} siOtro;
                     struct {A_logexp exp; A_bloq sent;} mientras;
                     struct {A_exp exp;} regresa;
-                    struct {S_symbol id;A_parami param;} llamada;
+                    struct {S_symbol id; A_parami param;} llamada;
                    } u;
             };
 
@@ -69,25 +69,25 @@ struct A_sent_ {enum {A_sentAsigna, A_sentDespl,A_sentDesplS,A_sentSi,A_sentSiOt
 A_sent A_SentAsigna(S_symbol id, A_exp exp);
 A_sent A_SentDespl(A_exp exp);
 A_sent A_SentDesplS(String exp);
-A_sent A_sentSi(A_logexp exp, A_bloq sent);
-A_sent A_sentSiOtro(A_logexp exp, A_bloq sent1,A_bloq sent2);
-A_sent A_sentMientras(A_logexp exp, A_bloq sent);
-A_sent A_sentRegresa(A_exp exp);
-A_sent A_sentLlamada(S_symbol id,A_parami param);
+A_sent A_SentSi(A_logexp exp, A_bloq sent);
+A_sent A_SentSiOtro(A_logexp exp, A_bloq sent1,A_bloq sent2);
+A_sent A_SentMientras(A_logexp exp, A_bloq sent);
+A_sent A_SentRegresa(A_exp exp);
+A_sent A_SentLlamada(S_symbol id,A_parami param);
 // -----------------------------------------------------------------------------
 struct A_decla_ {enum {A_bloqDeclara} clase;
             union{struct {A_sentdecla sent; A_decla decla;} declarar;
                 }u;
             };
-A_decla A_bloqDeclara(A_sentdecla sent, A_decla decla);
+A_decla A_BloqDeclara(A_sentdecla sent, A_decla decla);
 // -----------------------------------------------------------------------------
 struct A_sentdecla_ {enum {A_vGlobal,A_defineF} clase;
             union{struct {S_symbol id; A_exp exp;} variable;
                   struct {S_symbol id; A_paramd param; A_bloq bloque;} funcion;
                   }u;
             };
-A_sentdecla A_vGlobal(S_symbol id, A_exp exp);
-A_sentdecla A_defineF(S_symbol id, A_paramd param, A_bloq bloque);
+A_sentdecla A_VGlobal(S_symbol id, A_exp exp);
+A_sentdecla A_DefineF(S_symbol id, A_paramd param, A_bloq bloque);
 // -----------------------------------------------------------------------------
 struct A_bloq_ {enum {A_bloque,A_bloqAlone} clase;
             union{struct {A_bloques bloque;} bloque;
@@ -95,15 +95,15 @@ struct A_bloq_ {enum {A_bloque,A_bloqAlone} clase;
             }u;
 };
 
-A_bloq A_bloque(A_bloques bloque);
-A_bloq A_bloqAlone(A_sent sent);
+A_bloq A_Bloque(A_bloques bloque);
+A_bloq A_BloqAlone(A_sent sent);
 // -----------------------------------------------------------------------------
 struct A_bloques_ {enum{A_bSentencias} clase;
             union {struct{A_sent sentencia; A_bloques sig;} sentencias;
             }u;
 };
 
-A_bloques A_bSentencias(A_sent sentencia, A_bloques sig);
+A_bloques A_BSentencias(A_sent sentencia, A_bloques sig);
 // -----------------------------------------------------------------------------
 struct A_exp_ {enum {A_expId, A_expNum, A_expOp,A_expLlamada,A_expParen} clase;
              union {S_symbol id;
@@ -117,47 +117,47 @@ struct A_exp_ {enum {A_expId, A_expNum, A_expOp,A_expLlamada,A_expParen} clase;
 A_exp A_ExpId(S_symbol id);
 A_exp A_ExpNum(int num);
 A_exp A_ExpOp(A_exp izq, A_opbin oper, A_exp der);
-A_exp A_expLlamada(S_symbol id,A_parami param);
-A_exp A_expParen(A_exp paren);
+A_exp A_ExpLlamada(S_symbol id,A_parami param);
+A_exp A_ExpParen(A_exp paren);
 // -----------------------------------------------------------------------------
 struct A_logexp_ {enum{A_expOpl,A_expNot,A_expLogic,A_logParen} clase;
             union {struct{A_logexp exp1; A_oplog oper; A_logexp exp2;} oplogic; //para and y or
                   A_logexp exp1;
                   struct{A_exp exp1; A_explog oper; A_exp exp2;} explogic; //para mayor que, menor que y eso
-                  struct{A_logexp;} paren;
+                  struct{A_logexp exp1;} paren;
             }u;
 };
 
-A_logexp A_expOpl(A_logexp exp1, A_oplog oper, A_logexp exp2);//para and y or
-A_logexp A_expNot(A_logexp exp1);
-A_logexp A_expLogic(A_exp exp1, A_explog oper, A_exp exp2);//para mayor que, menor que y eso
-A_logexp A_logParen(A_logexp exp1);
+A_logexp A_ExpOpl(A_logexp exp1, A_oplog oper, A_logexp exp2);//para and y or
+A_logexp A_ExpNot(A_logexp exp1);
+A_logexp A_ExpLogic(A_exp exp1, A_explog oper, A_exp exp2);//para mayor que, menor que y eso
+A_logexp A_LogParen(A_logexp exp1);
 // -----------------------------------------------------------------------------
 struct A_paramd_ {enum{A_paramdP} clase;
             union {struct{S_symbol id; A_lparam param} param;
             }u;
 }:
 
-A_paramd A_paramdP(S_symbol id, A_lparam param);
+A_paramd A_ParamdP(S_symbol id, A_lparam param);
 // -----------------------------------------------------------------------------
 struct A_lparam_ {enum{A_lparamdP} clase;
             union {struct{S_symbol id; A_lparam param} param;
             }u;
 }:
 
-A_lparam A_lparamdP(S_symbol id, A_lparam param);
+A_lparam A_LparamdP(S_symbol id, A_lparam param);
 // -----------------------------------------------------------------------------
 struct A_parami_ {enum{A_paramiP} clase;
             union {struct{A_exp exp; A_lparami param} param;
             }u;
 }:
 
-A_parami A_paramiP(A_exp exp, A_lparami param);
+A_parami A_ParamiP(A_exp exp, A_lparami param);
 // -----------------------------------------------------------------------------
 struct A_lparami_ {enum{A_lparamiP} clase;
             union {struct{A_exp exp; A_lparami param} param;
             }u;
 }:
 
-A_lparami A_lparamiP(A_exp exp, A_lparami param);
+A_lparami A_LparamiP(A_exp exp, A_lparami param);
 #endif
