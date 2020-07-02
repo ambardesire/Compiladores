@@ -8,8 +8,8 @@ parsetst.o: parsetst.c tokens.h errormsg.h util.h
 errormsg.o: errormsg.c errormsg.h util.h
 	gcc -g -c errormsg.c
 
-lex.yy.o: lex.yy.c y.tab.h errormsg.h util.h
-	gcc -g -c lex.yy.c
+lex.yy.o: lex.yy.c y.tab.h errormsg.h util.h slpau.o slpau.h symbol.o symbol.h table.h table.o
+	gcc -g -c lex.yy.c 
 
 lex.yy.c: simple.l y.tab.h simple.y
 	flex simple.l
@@ -26,7 +26,7 @@ util.o: util.c util.h
 table.o: table.c table.h util.h
 	gcc -g -c table.c
 
-symbol.o: symbol.c util.h table.h
+symbol.o: symbol.c util.h table.h symbol.h
 	gcc -g -c symbol.c
 
 slpau.o: slpau.c util.h slpau.h

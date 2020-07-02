@@ -73,7 +73,7 @@
 #include "symbol.h"
 #include "tokens.h"
 
-A_program raiz_sintabs;
+A_programi raiz_sintabs;
 
 int yylex(void); /* C necesita conocer el prototipo de la función de  */
 		 /* Análisis Léxico                                    */
@@ -175,7 +175,7 @@ union YYSTYPE
   A_bloq bloq;
   A_bloques bloques;
   A_sent sent;
-  A_exp exp:
+  A_exp exp;
   A_logexp logexp;
   A_paramd paramd;
   A_lparam lparam;
@@ -1352,218 +1352,264 @@ yyreduce:
 #line 1353 "y.tab.c" /* yacc.c:1646  */
     break;
 
+  case 4:
+#line 86 "simple.y" /* yacc.c:1646  */
+    {}
+#line 1359 "y.tab.c" /* yacc.c:1646  */
+    break;
+
   case 5:
 #line 87 "simple.y" /* yacc.c:1646  */
     {(yyval.decla)=A_BloqDeclara((yyvsp[-1].sentdecla),(yyvsp[0].decla));}
-#line 1359 "y.tab.c" /* yacc.c:1646  */
+#line 1365 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 6:
 #line 90 "simple.y" /* yacc.c:1646  */
-    {(yyval.sentdecla)=A_VGlobal((yyvsp[-3].sval),(yyvsp[-1].exp));}
-#line 1365 "y.tab.c" /* yacc.c:1646  */
+    {(yyval.sentdecla)=A_VGlobal(S_Symbol((yyvsp[-3].sval)),(yyvsp[-1].exp));}
+#line 1371 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 7:
 #line 91 "simple.y" /* yacc.c:1646  */
-    {(yyval.sentdecla)=A_DefineF((yyvsp[-6].sval),(yyvsp[-4].paramd),(yyvsp[0].bloq));}
-#line 1371 "y.tab.c" /* yacc.c:1646  */
+    {(yyval.sentdecla)=A_DefineF(S_Symbol((yyvsp[-6].sval)),(yyvsp[-4].paramd),(yyvsp[0].bloq));}
+#line 1377 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 8:
 #line 94 "simple.y" /* yacc.c:1646  */
     {(yyval.bloq)=A_Bloque((yyvsp[-1].bloques));}
-#line 1377 "y.tab.c" /* yacc.c:1646  */
+#line 1383 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 9:
 #line 95 "simple.y" /* yacc.c:1646  */
     {(yyval.bloq)=A_BloqAlone((yyvsp[0].sent));}
-#line 1383 "y.tab.c" /* yacc.c:1646  */
+#line 1389 "y.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 10:
+#line 98 "simple.y" /* yacc.c:1646  */
+    {}
+#line 1395 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 11:
 #line 99 "simple.y" /* yacc.c:1646  */
     {(yyval.bloques)=A_BSentencias((yyvsp[-1].sent),(yyvsp[0].bloques));}
-#line 1389 "y.tab.c" /* yacc.c:1646  */
+#line 1401 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 12:
 #line 102 "simple.y" /* yacc.c:1646  */
     {(yyval.sent)=A_SentDespl((yyvsp[-2].exp));}
-#line 1395 "y.tab.c" /* yacc.c:1646  */
+#line 1407 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 13:
 #line 104 "simple.y" /* yacc.c:1646  */
     {(yyval.sent)=A_SentSi((yyvsp[-1].logexp),(yyvsp[0].bloq));}
-#line 1401 "y.tab.c" /* yacc.c:1646  */
+#line 1413 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 14:
 #line 105 "simple.y" /* yacc.c:1646  */
     {(yyval.sent)=A_SentSiOtro((yyvsp[-3].logexp),(yyvsp[-2].bloq),(yyvsp[0].bloq));}
-#line 1407 "y.tab.c" /* yacc.c:1646  */
+#line 1419 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 15:
 #line 106 "simple.y" /* yacc.c:1646  */
     {(yyval.sent)=A_SentMientras((yyvsp[-1].logexp),(yyvsp[0].bloq));}
-#line 1413 "y.tab.c" /* yacc.c:1646  */
+#line 1425 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 16:
 #line 107 "simple.y" /* yacc.c:1646  */
     {(yyval.sent)=A_SentAsigna(S_Symbol((yyvsp[-3].sval)),(yyvsp[-1].exp));}
-#line 1419 "y.tab.c" /* yacc.c:1646  */
+#line 1431 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 17:
 #line 108 "simple.y" /* yacc.c:1646  */
     {(yyval.sent)=A_SentRegresa((yyvsp[-1].exp));}
-#line 1425 "y.tab.c" /* yacc.c:1646  */
+#line 1437 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 18:
 #line 109 "simple.y" /* yacc.c:1646  */
     {(yyval.sent)=A_SentLlamada(S_Symbol((yyvsp[-4].sval)),(yyvsp[-2].parami));}
-#line 1431 "y.tab.c" /* yacc.c:1646  */
+#line 1443 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 19:
 #line 112 "simple.y" /* yacc.c:1646  */
     {(yyval.exp)=A_ExpNum((yyvsp[0].ival));}
-#line 1437 "y.tab.c" /* yacc.c:1646  */
+#line 1449 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 20:
 #line 113 "simple.y" /* yacc.c:1646  */
     {(yyval.exp)=A_ExpId(S_Symbol((yyvsp[0].sval)));}
-#line 1443 "y.tab.c" /* yacc.c:1646  */
+#line 1455 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 21:
 #line 114 "simple.y" /* yacc.c:1646  */
     {(yyval.exp)=A_ExpLlamada(S_Symbol((yyvsp[-3].sval)),(yyvsp[-1].parami));}
-#line 1449 "y.tab.c" /* yacc.c:1646  */
+#line 1461 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 22:
 #line 115 "simple.y" /* yacc.c:1646  */
     {(yyval.exp)=A_ExpOp((yyvsp[-2].exp),A_mas,(yyvsp[0].exp));}
-#line 1455 "y.tab.c" /* yacc.c:1646  */
+#line 1467 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 23:
 #line 116 "simple.y" /* yacc.c:1646  */
     {(yyval.exp)=A_ExpOp((yyvsp[-2].exp),A_menos,(yyvsp[0].exp));}
-#line 1461 "y.tab.c" /* yacc.c:1646  */
+#line 1473 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 24:
 #line 117 "simple.y" /* yacc.c:1646  */
     {(yyval.exp)=A_ExpOp((yyvsp[-2].exp),A_por,(yyvsp[0].exp));}
-#line 1467 "y.tab.c" /* yacc.c:1646  */
+#line 1479 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 25:
 #line 118 "simple.y" /* yacc.c:1646  */
     {(yyval.exp)=A_ExpOp((yyvsp[-2].exp),A_entre,(yyvsp[0].exp));}
-#line 1473 "y.tab.c" /* yacc.c:1646  */
+#line 1485 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 26:
 #line 119 "simple.y" /* yacc.c:1646  */
     {(yyval.exp)=A_ExpParen((yyvsp[-1].exp));}
-#line 1479 "y.tab.c" /* yacc.c:1646  */
+#line 1491 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 27:
 #line 122 "simple.y" /* yacc.c:1646  */
     {(yyval.logexp)=A_ExpOpl((yyvsp[-2].logexp),A_and,(yyvsp[0].logexp));}
-#line 1485 "y.tab.c" /* yacc.c:1646  */
+#line 1497 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 28:
 #line 123 "simple.y" /* yacc.c:1646  */
     {(yyval.logexp)=A_ExpOpl((yyvsp[-2].logexp),A_or,(yyvsp[0].logexp));}
-#line 1491 "y.tab.c" /* yacc.c:1646  */
+#line 1503 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 29:
 #line 124 "simple.y" /* yacc.c:1646  */
     {(yyval.logexp)=A_ExpNot((yyvsp[0].logexp));}
-#line 1497 "y.tab.c" /* yacc.c:1646  */
+#line 1509 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 30:
 #line 125 "simple.y" /* yacc.c:1646  */
-    {(yyval.logexp)=A_ExpOpl((yyvsp[-2].exp),A_igual,(yyvsp[0].exp));}
-#line 1503 "y.tab.c" /* yacc.c:1646  */
+    {(yyval.logexp)=A_ExpLogic((yyvsp[-2].exp),A_igual,(yyvsp[0].exp));}
+#line 1515 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 31:
 #line 126 "simple.y" /* yacc.c:1646  */
-    {(yyval.logexp)=A_ExpOpl((yyvsp[-2].exp),A_difer,(yyvsp[0].exp));}
-#line 1509 "y.tab.c" /* yacc.c:1646  */
+    {(yyval.logexp)=A_ExpLogic((yyvsp[-2].exp),A_difer,(yyvsp[0].exp));}
+#line 1521 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 32:
 #line 127 "simple.y" /* yacc.c:1646  */
-    {(yyval.logexp)=A_ExpOpl((yyvsp[-2].exp),A_mayor,(yyvsp[0].exp));}
-#line 1515 "y.tab.c" /* yacc.c:1646  */
+    {(yyval.logexp)=A_ExpLogic((yyvsp[-2].exp),A_mayor,(yyvsp[0].exp));}
+#line 1527 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 33:
 #line 128 "simple.y" /* yacc.c:1646  */
-    {(yyval.logexp)=A_ExpOpl((yyvsp[-2].exp),A_menor,(yyvsp[0].exp));}
-#line 1521 "y.tab.c" /* yacc.c:1646  */
+    {(yyval.logexp)=A_ExpLogic((yyvsp[-2].exp),A_menor,(yyvsp[0].exp));}
+#line 1533 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 34:
 #line 129 "simple.y" /* yacc.c:1646  */
-    {(yyval.logexp)=A_ExpOpl((yyvsp[-2].exp),A_mayori,(yyvsp[0].exp));}
-#line 1527 "y.tab.c" /* yacc.c:1646  */
+    {(yyval.logexp)=A_ExpLogic((yyvsp[-2].exp),A_mayori,(yyvsp[0].exp));}
+#line 1539 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 35:
 #line 130 "simple.y" /* yacc.c:1646  */
-    {(yyval.logexp)=A_ExpOpl((yyvsp[-2].exp),A_menori,(yyvsp[0].exp));}
-#line 1533 "y.tab.c" /* yacc.c:1646  */
+    {(yyval.logexp)=A_ExpLogic((yyvsp[-2].exp),A_menori,(yyvsp[0].exp));}
+#line 1545 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 36:
 #line 131 "simple.y" /* yacc.c:1646  */
     {(yyval.logexp)=A_LogParen((yyvsp[-1].logexp));}
-#line 1539 "y.tab.c" /* yacc.c:1646  */
+#line 1551 "y.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 37:
+#line 134 "simple.y" /* yacc.c:1646  */
+    {}
+#line 1557 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 38:
 #line 135 "simple.y" /* yacc.c:1646  */
     {(yyval.paramd)=A_ParamdP(S_Symbol((yyvsp[-1].sval)),(yyvsp[0].lparam));}
-#line 1545 "y.tab.c" /* yacc.c:1646  */
+#line 1563 "y.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 39:
+#line 138 "simple.y" /* yacc.c:1646  */
+    {}
+#line 1569 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 40:
 #line 139 "simple.y" /* yacc.c:1646  */
     {(yyval.lparam)=A_LparamdP(S_Symbol((yyvsp[-1].sval)),(yyvsp[0].lparam));}
-#line 1551 "y.tab.c" /* yacc.c:1646  */
+#line 1575 "y.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 41:
+#line 142 "simple.y" /* yacc.c:1646  */
+    {}
+#line 1581 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 42:
 #line 143 "simple.y" /* yacc.c:1646  */
+<<<<<<< HEAD
     {(yyval.lparami)=A_LparamiP(S_Symbol((yyvsp[-1].exp)),(yyvsp[0].lparami));}
 #line 1557 "y.tab.c" /* yacc.c:1646  */
+=======
+    {(yyval.parami)=A_ParamiP((yyvsp[-1].exp),(yyvsp[0].lparami));}
+#line 1587 "y.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 43:
+#line 146 "simple.y" /* yacc.c:1646  */
+    {}
+#line 1593 "y.tab.c" /* yacc.c:1646  */
+>>>>>>> c9db9de3c8c2255ec89cf80eb67dec8f2f94a006
     break;
 
   case 44:
 #line 147 "simple.y" /* yacc.c:1646  */
+<<<<<<< HEAD
     {(yyval.parami)=A_ParamiP(S_Symbol((yyvsp[-1].exp)),(yyvsp[0].lparami));}
 #line 1563 "y.tab.c" /* yacc.c:1646  */
+=======
+    {(yyval.lparami)=A_LparamiP((yyvsp[-1].exp),(yyvsp[0].lparami));}
+#line 1599 "y.tab.c" /* yacc.c:1646  */
+>>>>>>> c9db9de3c8c2255ec89cf80eb67dec8f2f94a006
     break;
 
 
-#line 1567 "y.tab.c" /* yacc.c:1646  */
+#line 1603 "y.tab.c" /* yacc.c:1646  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
