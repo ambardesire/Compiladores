@@ -139,10 +139,12 @@ lparam:
 	| ',' ID lparam 						{$$=A_LparamdP(S_Symbol($2),$3);}
 	;
 
+lparami:
+	| ',' exp lparami 						{$$=A_LparamiP(S_Symbol($2),$3);}
+	;
+
 parami:
 	| exp lparami 							{$$=A_ParamiP(S_Symbol($1),$2);}
 ;
 
-lparami:
-	| ',' exp lparami 						{$$=A_LparamiP(S_Symbol($2),$3);}
-	;
+

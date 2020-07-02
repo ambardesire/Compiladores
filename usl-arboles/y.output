@@ -61,11 +61,11 @@ Grammar
    38 lparam: %empty
    39       | ',' ID lparam
 
-   40 parami: %empty
-   41       | exp lparami
+   40 lparami: %empty
+   41        | ',' exp lparami
 
-   42 lparami: %empty
-   43        | ',' exp lparami
+   42 parami: %empty
+   43       | exp lparami
 
 
 Terminals, with rules where they appear
@@ -75,7 +75,7 @@ $end (0) 0
 ')' (41) 6 11 17 20 25 35
 '*' (42) 23
 '+' (43) 21
-',' (44) 39 43
+',' (44) 39 41
 '-' (45) 22
 '/' (47) 24
 ':' (58) 6
@@ -133,10 +133,10 @@ paramd (44)
     on left: 36 37, on right: 6
 lparam (45)
     on left: 38 39, on right: 37 39
-parami (46)
-    on left: 40 41, on right: 17 20
-lparami (47)
-    on left: 42 43, on right: 41 43
+lparami (46)
+    on left: 40 41, on right: 41 43
+parami (47)
+    on left: 42 43, on right: 17 20
 
 
 State 0
@@ -401,7 +401,7 @@ State 25
     ENTERO  shift, and go to state 20
     '('     shift, and go to state 21
 
-    $default  reduce using rule 40 (parami)
+    $default  reduce using rule 42 (parami)
 
     exp     go to state 45
     parami  go to state 46
@@ -555,7 +555,7 @@ State 35
     ENTERO  shift, and go to state 20
     '('     shift, and go to state 21
 
-    $default  reduce using rule 40 (parami)
+    $default  reduce using rule 42 (parami)
 
     exp     go to state 45
     parami  go to state 64
@@ -666,7 +666,7 @@ State 45
    22    | exp . '-' exp
    23    | exp . '*' exp
    24    | exp . '/' exp
-   41 parami: exp . lparami
+   43 parami: exp . lparami
 
     '+'  shift, and go to state 37
     '-'  shift, and go to state 38
@@ -674,7 +674,7 @@ State 45
     '/'  shift, and go to state 40
     ','  shift, and go to state 74
 
-    $default  reduce using rule 42 (lparami)
+    $default  reduce using rule 40 (lparami)
 
     lparami  go to state 75
 
@@ -975,7 +975,7 @@ State 73
 
 State 74
 
-   43 lparami: ',' . exp lparami
+   41 lparami: ',' . exp lparami
 
     ID      shift, and go to state 19
     ENTERO  shift, and go to state 20
@@ -986,9 +986,9 @@ State 74
 
 State 75
 
-   41 parami: exp lparami .
+   43 parami: exp lparami .
 
-    $default  reduce using rule 41 (parami)
+    $default  reduce using rule 43 (parami)
 
 
 State 76
@@ -1174,7 +1174,7 @@ State 91
    22    | exp . '-' exp
    23    | exp . '*' exp
    24    | exp . '/' exp
-   43 lparami: ',' exp . lparami
+   41 lparami: ',' exp . lparami
 
     '+'  shift, and go to state 37
     '-'  shift, and go to state 38
@@ -1182,7 +1182,7 @@ State 91
     '/'  shift, and go to state 40
     ','  shift, and go to state 74
 
-    $default  reduce using rule 42 (lparami)
+    $default  reduce using rule 40 (lparami)
 
     lparami  go to state 97
 
@@ -1232,9 +1232,9 @@ State 96
 
 State 97
 
-   43 lparami: ',' exp lparami .
+   41 lparami: ',' exp lparami .
 
-    $default  reduce using rule 43 (lparami)
+    $default  reduce using rule 41 (lparami)
 
 
 State 98
