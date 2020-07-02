@@ -46,8 +46,8 @@ extern int yydebug;
   enum yytokentype
   {
     ID = 258,
-    CADE = 259,
-    ENTERO = 260,
+    ENTERO = 259,
+    CADE = 260,
     DESPLIEGA = 261,
     REGRESA = 262,
     TIPOENT = 263,
@@ -68,8 +68,8 @@ extern int yydebug;
 #endif
 /* Tokens.  */
 #define ID 258
-#define CADE 259
-#define ENTERO 260
+#define ENTERO 259
+#define CADE 260
 #define DESPLIEGA 261
 #define REGRESA 262
 #define TIPOENT 263
@@ -92,12 +92,24 @@ extern int yydebug;
 
 union YYSTYPE
 {
-#line 39 "simple.y" /* yacc.c:1909  */
+#line 22 "simple.y" /* yacc.c:1909  */
 
   int ival;
   char *sval;
+  A_programi programi;
+  A_decla decla;
+  A_sentdecla sentdecla;
+  A_bloq bloq;
+  A_bloques bloques;
+  A_sent sent;
+  A_exp exp:
+  A_logexp logexp;
+  A_paramd paramd;
+  A_lparam lparam;
+  A_parami parami;
+  A_lparami lparami;
 
-#line 101 "y.tab.h" /* yacc.c:1909  */
+#line 113 "y.tab.h" /* yacc.c:1909  */
 };
 
 typedef union YYSTYPE YYSTYPE;

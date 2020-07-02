@@ -1,5 +1,6 @@
 #include "util.h"
 #include "slpau.h"
+#include <string.h>
 
 A_programi A_Inicial(A_decla declaraciones, A_bloq codigo) {
  A_programi p = checked_malloc(sizeof *p);
@@ -19,11 +20,11 @@ A_sent A_SentDespl(A_exp exp) {
   return s;
 }
 
-A_sent A_SentDesplS(String exp) {
+/*A_sent A_SentDesplS(String exp) {
    A_sent s = checked_malloc(sizeof *s);
    s->clase=A_sentDesplS; s->u.despls.exp=exp;
    return s;
-}
+}*/
 
 A_sent A_SentSi(A_logexp exp, A_bloq sent) {
    A_sent s = checked_malloc(sizeof *s);

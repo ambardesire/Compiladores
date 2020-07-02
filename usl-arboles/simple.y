@@ -36,14 +36,25 @@ void yyerror(char *s)
   A_lparami lparami;
 }
 
-%type<sent>  
+%type<programi> program programi
+%type<decla> decla
+%type<sentdecla> sentdecla
+%type<bloq> bloq
+%type<bloques> bloques
+%type<sent> sent
+%type<exp> exp
+%type<logexp> logexp
+%type<paramd> paramd
+%type<lparam> lparam
+%type<parami> parami
+%type<lparami> lparami 
 
-%token <sval> ID STRING
+%token <sval> ID 
 %token <ival> ENTERO
 
-%token  ID
+//%token  ID
 %token  CADE
-%token  ENTERO
+//%token  ENTERO
 %token  DESPLIEGA
 %token  REGRESA
 %token  TIPOENT
@@ -89,7 +100,7 @@ bloques:
 ;
 
 sent: DESPLIEGA '(' exp ')' ';'						{$$=A_SentDespl($3);}
-	| DESPLIEGA '(' CADE ')' ';' 					{$$=A_SentDesplS($3);}
+//    | DESPLIEGA '(' CADE ')' ';' 					{$$=A_SentDesplS($3);}
     | SI  logexp  bloq %prec SI 					{$$=A_SentSi($2,$3);}
     | SI  logexp  bloq OTRO bloq 					{$$=A_SentSiOtro($2,$3,$5);}
     | MIENTRAS  logexp  bloq %prec MIENTRAS 				{$$=A_SentMientras($2,$3);}

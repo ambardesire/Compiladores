@@ -1,5 +1,6 @@
-parsetst: parsetst.o y.tab.o lex.yy.o errormsg.o util.o
-	gcc -g -o parsetst parsetst.o y.tab.o lex.yy.o errormsg.o util.o
+
+parsetst: parsetst.o y.tab.o lex.yy.o errormsg.o util.o table.o symbol.o slpau.o
+	gcc -g -o parsetst parsetst.o y.tab.o lex.yy.o errormsg.o util.o table.o symbol.o slpau.o
 
 parsetst.o: parsetst.c tokens.h errormsg.h util.h
 	gcc -g -c parsetst.c
@@ -21,6 +22,15 @@ y.tab.c: simple.y
 
 util.o: util.c util.h
 	gcc -g -c util.c
+
+table.o: table.c table.h util.h
+	gcc -g -c table.c
+
+symbol.o: symbol.c util.h table.h
+	gcc -g -c symbol.c
+
+slpau.o: slpau.c util.h slpau.h
+	gcc -g -c slpau.c
 
 clean: 
 	rm -f lextest *.o y.output y.vcg

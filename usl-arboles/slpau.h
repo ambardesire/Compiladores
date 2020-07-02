@@ -3,6 +3,7 @@
 #ifndef SLPAU_H
 #define SLPAU_H
 
+#include <string.h>
 #include "symbol.h"
 
 /* Un nodo de un çrbol de Sintaxis Abstracta es una sentencia o una expresion */
@@ -48,7 +49,7 @@ Los nodos de un arbol se definen polimorficamente. Estan formados por:
 struct A_sent_ {enum {A_sentAsigna, A_sentDespl,A_sentDesplS,A_sentSi,A_sentSiOtro,A_sentMientras,A_sentRegresa,A_sentLlamada} clase;
              union {struct {S_symbol id; A_exp exp;} asigna;
                     struct {A_exp exp;} despl;
-                    struct {String exp;} despls;
+                    //struct {String exp;} despls;
                     struct {A_logexp exp; A_bloq sent;} si;
                     struct {A_logexp exp; A_bloq sent1, sent2;} siOtro;
                     struct {A_logexp exp; A_bloq sent;} mientras;
@@ -68,7 +69,7 @@ struct A_sent_ {enum {A_sentAsigna, A_sentDespl,A_sentDesplS,A_sentSi,A_sentSiOt
    
 A_sent A_SentAsigna(S_symbol id, A_exp exp);
 A_sent A_SentDespl(A_exp exp);
-A_sent A_SentDesplS(String exp);
+//A_sent A_SentDesplS(String exp);
 A_sent A_SentSi(A_logexp exp, A_bloq sent);
 A_sent A_SentSiOtro(A_logexp exp, A_bloq sent1,A_bloq sent2);
 A_sent A_SentMientras(A_logexp exp, A_bloq sent);
@@ -91,7 +92,7 @@ A_sentdecla A_DefineF(S_symbol id, A_paramd param, A_bloq bloque);
 // -----------------------------------------------------------------------------
 struct A_bloq_ {enum {A_bloque,A_bloqAlone} clase;
             union{struct {A_bloques bloque;} bloque;
-                  struct {A_sent sent} alone;
+                  struct {A_sent sent;} alone;
             }u;
 };
 
@@ -134,30 +135,30 @@ A_logexp A_ExpLogic(A_exp exp1, A_explog oper, A_exp exp2);//para mayor que, men
 A_logexp A_LogParen(A_logexp exp1);
 // -----------------------------------------------------------------------------
 struct A_paramd_ {enum{A_paramdP} clase;
-            union {struct{S_symbol id; A_lparam param} param;
+            union {struct{S_symbol id; A_lparam param;} param;
             }u;
-}:
+};
 
 A_paramd A_ParamdP(S_symbol id, A_lparam param);
 // -----------------------------------------------------------------------------
 struct A_lparam_ {enum{A_lparamdP} clase;
-            union {struct{S_symbol id; A_lparam param} param;
+            union {struct{S_symbol id; A_lparam param;} param;
             }u;
-}:
+};
 
 A_lparam A_LparamdP(S_symbol id, A_lparam param);
 // -----------------------------------------------------------------------------
 struct A_parami_ {enum{A_paramiP} clase;
-            union {struct{A_exp exp; A_lparami param} param;
+            union {struct{A_exp exp; A_lparami param;} param;
             }u;
-}:
+};
 
 A_parami A_ParamiP(A_exp exp, A_lparami param);
 // -----------------------------------------------------------------------------
 struct A_lparami_ {enum{A_lparamiP} clase;
-            union {struct{A_exp exp; A_lparami param} param;
+            union {struct{A_exp exp; A_lparami param;} param;
             }u;
-}:
+};
 
 A_lparami A_LparamiP(A_exp exp, A_lparami param);
 #endif
