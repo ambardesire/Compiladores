@@ -102,7 +102,7 @@ union YYSTYPE
   A_bloq bloq;
   A_bloques bloques;
   A_sent sent;
-  A_exp exp:
+  A_exp exp;
   A_logexp logexp;
   A_paramd paramd;
   A_lparam lparam;

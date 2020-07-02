@@ -8,7 +8,7 @@
 #include "symbol.h"
 #include "tokens.h"
 
-A_program raiz_sintabs;
+A_programi raiz_sintabs;
 
 int yylex(void); /* C necesita conocer el prototipo de la función de  */
 		 /* Análisis Léxico                                    */
@@ -28,7 +28,7 @@ void yyerror(char *s)
   A_bloq bloq;
   A_bloques bloques;
   A_sent sent;
-  A_exp exp:
+  A_exp exp;
   A_logexp logexp;
   A_paramd paramd;
   A_lparam lparam;
@@ -52,9 +52,7 @@ void yyerror(char *s)
 %token <sval> ID 
 %token <ival> ENTERO
 
-//%token  ID
 %token  CADE
-//%token  ENTERO
 %token  DESPLIEGA
 %token  REGRESA
 %token  TIPOENT
@@ -62,6 +60,8 @@ void yyerror(char *s)
 %nonassoc  OTRO
 %nonassoc  MIENTRAS
 %nonassoc  DEFINEF
+%nonassoc  ID
+%nonassoc  ENTERO
 
 %right  '='
 %right  NOT
@@ -83,19 +83,19 @@ program: programi							{raiz_sintabs=$1;}
 programi: decla bloq 							{$$=A_Inicial($1,$2);}
 ;
 
-decla:													
+decla:													{}
 	| sentdecla decla						{$$=A_BloqDeclara($1,$2);}
 ;
 
-sentdecla: ID '=' exp ';'						{$$=A_VGlobal($1,$3);}
-	| DEFINEF ID '(' paramd ')' ':' TIPOENT bloq 			{$$=A_DefineF($2,$4,$8);}
+sentdecla: ID '=' exp ';'						{$$=A_VGlobal(S_Symbol($1),$3);}
+	| DEFINEF ID '(' paramd ')' ':' TIPOENT bloq 			{$$=A_DefineF(S_Symbol($2),$4,$8);}
 ;
 
 bloq: '{' bloques '}'							{$$=A_Bloque($2);}
 	| sent 								{$$=A_BloqAlone($1);}
 ;
 
-bloques: 
+bloques: 										{}
 	| sent bloques							{$$=A_BSentencias($1,$2);}
 ;
 
@@ -122,27 +122,27 @@ exp: ENTERO								{$$=A_ExpNum($1);}
 logexp: logexp AND logexp 						{$$=A_ExpOpl($1,A_and,$3);}
 	| logexp OR logexp 						{$$=A_ExpOpl($1,A_or,$3);}
 	| NOT logexp 							{$$=A_ExpNot($2);}
-	| exp IGUAL exp 						{$$=A_ExpOpl($1,A_igual,$3);}
-	| exp DIFER exp 						{$$=A_ExpOpl($1,A_difer,$3);}
-	| exp MAYORQUE exp   						{$$=A_ExpOpl($1,A_mayor,$3);}
-	| exp MENORQUE exp 						{$$=A_ExpOpl($1,A_menor,$3);}
-	| exp MAYORIGUAL exp 						{$$=A_ExpOpl($1,A_mayori,$3);}
-	| exp MENORIGUAL exp 						{$$=A_ExpOpl($1,A_menori,$3);}
+	| exp IGUAL exp 						{$$=A_ExpLogic($1,A_igual,$3);}
+	| exp DIFER exp 						{$$=A_ExpLogic($1,A_difer,$3);}
+	| exp MAYORQUE exp   						{$$=A_ExpLogic($1,A_mayor,$3);}
+	| exp MENORQUE exp 						{$$=A_ExpLogic($1,A_menor,$3);}
+	| exp MAYORIGUAL exp 						{$$=A_ExpLogic($1,A_mayori,$3);}
+	| exp MENORIGUAL exp 						{$$=A_ExpLogic($1,A_menori,$3);}
 	| '(' logexp ')'    						{$$=A_LogParen($2);}
 	;
 
-paramd:
+paramd: 										{}
 	| ID lparam 							{$$=A_ParamdP(S_Symbol($1),$2);}
 ;
 
-lparam:
+lparam:											{}
 	| ',' ID lparam 						{$$=A_LparamdP(S_Symbol($2),$3);}
 	;
 
-parami:
-	| exp lparami 							{$$=A_ParamiP(S_Symbol($1),$2);}
+parami:											{}
+	| exp lparami 							{$$=A_ParamiP($1,$2);}
 ;
 
-lparami:
-	| ',' exp lparami 						{$$=A_LparamiP(S_Symbol($2),$3);}
+lparami:										{}
+	| ',' exp lparami 						{$$=A_LparamiP($2,$3);}
 	;

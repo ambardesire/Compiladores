@@ -503,6 +503,7 @@ char *yytext;
 #line 2 "simple.l"
 	#include <string.h>
 	#include "util.h"
+	#include "slpau.h"
 	#include "y.tab.h"
 	#include "errormsg.h"
 
@@ -524,9 +525,9 @@ char *yytext;
 	char string_buf[MAX_STR_CONST];
 	char *string_buf_ptr;
 
-#line 528 "lex.yy.c"
+#line 529 "lex.yy.c"
 
-#line 530 "lex.yy.c"
+#line 531 "lex.yy.c"
 
 #define INITIAL 0
 #define STRINGS 1
@@ -745,10 +746,10 @@ YY_DECL
 		}
 
 	{
-#line 30 "simple.l"
+#line 31 "simple.l"
 
 
-#line 752 "lex.yy.c"
+#line 753 "lex.yy.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -807,218 +808,218 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 32 "simple.l"
+#line 33 "simple.l"
 {adjust(); continue;}
 	YY_BREAK
 case 2:
 /* rule 2 can match eol */
 YY_RULE_SETUP
-#line 33 "simple.l"
+#line 34 "simple.l"
 {adjust(); EM_newline(); continue;}
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 34 "simple.l"
+#line 35 "simple.l"
 {adjust(); return ',';}
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 35 "simple.l"
+#line 36 "simple.l"
 {adjust(); return ';';}
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 36 "simple.l"
+#line 37 "simple.l"
 {adjust(); return '=';}
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 37 "simple.l"
+#line 38 "simple.l"
 {adjust(); return ':';}
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 38 "simple.l"
+#line 39 "simple.l"
 {adjust(); return '{';}
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 39 "simple.l"
+#line 40 "simple.l"
 {adjust(); return '}';}
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 40 "simple.l"
+#line 41 "simple.l"
 {adjust(); return '[';}
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 41 "simple.l"
+#line 42 "simple.l"
 {adjust(); return ']';}
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 42 "simple.l"
+#line 43 "simple.l"
 {adjust(); return '(';}
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 43 "simple.l"
+#line 44 "simple.l"
 {adjust(); return ')';}
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 44 "simple.l"
+#line 45 "simple.l"
 {adjust(); return '+';}
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 45 "simple.l"
+#line 46 "simple.l"
 {adjust(); return '-';}
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 46 "simple.l"
+#line 47 "simple.l"
 {adjust(); return '*';}
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 47 "simple.l"
+#line 48 "simple.l"
 {adjust(); return '/';}
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 48 "simple.l"
+#line 49 "simple.l"
 {adjust(); return AND;}
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 49 "simple.l"
+#line 50 "simple.l"
 {adjust(); return OR;}
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 50 "simple.l"
+#line 51 "simple.l"
 {adjust(); return NOT;}
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 51 "simple.l"
+#line 52 "simple.l"
 {adjust(); return IGUAL;}
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 52 "simple.l"
+#line 53 "simple.l"
 {adjust(); return DIFER;}
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 53 "simple.l"
+#line 54 "simple.l"
 {adjust(); return MAYORQUE;}
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 54 "simple.l"
+#line 55 "simple.l"
 {adjust(); return MENORQUE;}
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 55 "simple.l"
+#line 56 "simple.l"
 {adjust(); return MAYORIGUAL;}
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 56 "simple.l"
+#line 57 "simple.l"
 {adjust(); return MENORIGUAL;}
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 57 "simple.l"
+#line 58 "simple.l"
 {adjust(); yylval.ival=atoi(yytext); return ENTERO;}
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 58 "simple.l"
+#line 59 "simple.l"
 {adjust(); return SI;}
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 59 "simple.l"
+#line 60 "simple.l"
 {adjust(); return OTRO;}
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 60 "simple.l"
+#line 61 "simple.l"
 {adjust(); return DEFINEF;}
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 61 "simple.l"
+#line 62 "simple.l"
 {adjust(); return DESPLIEGA;}
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 62 "simple.l"
+#line 63 "simple.l"
 {adjust(); return MIENTRAS;}
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 63 "simple.l"
+#line 64 "simple.l"
 {adjust(); return REGRESA;}
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
-#line 64 "simple.l"
+#line 65 "simple.l"
 {adjust(); return TIPOENT;}
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
-#line 65 "simple.l"
+#line 66 "simple.l"
 {adjust(); yylval.sval=String(yytext); return ID;}
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
-#line 67 "simple.l"
+#line 68 "simple.l"
 {BEGIN(STRINGS);}
 	YY_BREAK
 case 36:
 /* rule 36 can match eol */
 YY_RULE_SETUP
-#line 68 "simple.l"
+#line 69 "simple.l"
 {yylval.sval=String(yytext);}
 	YY_BREAK
 case 37:
 YY_RULE_SETUP
-#line 69 "simple.l"
+#line 70 "simple.l"
 {BEGIN(INITIAL);return CADE;}
 	YY_BREAK
 case 38:
 YY_RULE_SETUP
-#line 71 "simple.l"
+#line 72 "simple.l"
 {BEGIN(COMENTARIOS);}
 	YY_BREAK
 case 39:
 YY_RULE_SETUP
-#line 72 "simple.l"
+#line 73 "simple.l"
 {BEGIN(INITIAL);}
 	YY_BREAK
 case YY_STATE_EOF(INITIAL):
 case YY_STATE_EOF(STRINGS):
 case YY_STATE_EOF(COMENTARIOS):
-#line 74 "simple.l"
+#line 75 "simple.l"
 {printf("\nFin de Archivo encontrado."); exit(0);}
 	YY_BREAK
 case 40:
 YY_RULE_SETUP
-#line 76 "simple.l"
+#line 77 "simple.l"
 {adjust(); EM_error(EM_tokPos,"token ilegal");}
 	YY_BREAK
 case 41:
 YY_RULE_SETUP
-#line 77 "simple.l"
+#line 78 "simple.l"
 ECHO;
 	YY_BREAK
-#line 1022 "lex.yy.c"
+#line 1023 "lex.yy.c"
 
 	case YY_END_OF_BUFFER:
 		{
@@ -2021,5 +2022,5 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 77 "simple.l"
+#line 78 "simple.l"
 

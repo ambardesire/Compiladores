@@ -1,6 +1,7 @@
 %{
 	#include <string.h>
 	#include "util.h"
+	#include "slpau.h"
 	#include "y.tab.h"
 	#include "errormsg.h"
 

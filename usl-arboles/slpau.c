@@ -32,9 +32,9 @@ A_sent A_SentSi(A_logexp exp, A_bloq sent) {
    return s;
 }
 
-A_sent A_SentSiOtro(A_logexp exp; A_bloq sent1, sent2;) {
+A_sent A_SentSiOtro(A_logexp exp, A_bloq sent1,A_bloq sent2) {
    A_sent s = checked_malloc(sizeof *s);
-   s->clase=A_sentSiOtro; s->u.siOtro.exp=exp; s->u.siOtro.sent1=sent1; s->u.siOtro.sent2=sent2;
+   s->clase=A_sentSiOtro; s->u.siOtro.exp = exp; s->u.siOtro.sent1=sent1; s->u.siOtro.sent2=sent2;
    return s;
 }
 
