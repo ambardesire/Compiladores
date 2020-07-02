@@ -517,7 +517,7 @@ static const char *const yytname[] =
   "MENORIGUAL", "'+'", "'-'", "'*'", "'/'", "';'", "'('", "')'", "':'",
   "'{'", "'}'", "','", "$accept", "program", "programi", "decla",
   "sentdecla", "bloq", "bloques", "sent", "exp", "logexp", "paramd",
-  "lparam", "lparami", "parami", YY_NULLPTR
+  "lparam", "parami", "lparami", YY_NULLPTR
 };
 #endif
 
@@ -566,28 +566,28 @@ static const yytype_uint8 yydefact[] =
 {
        4,     0,     0,     0,     2,     0,     4,     0,     0,     1,
        0,     0,     0,     0,     0,    10,     3,     9,     5,    20,
-      19,     0,     0,    37,     0,    43,     0,     0,     0,     0,
-       0,     0,     0,     0,    10,    43,     0,     0,     0,     0,
-       0,     6,    39,     0,     0,    41,     0,     0,    17,    29,
+      19,     0,     0,    37,     0,    41,     0,     0,     0,     0,
+       0,     0,     0,     0,    10,    41,     0,     0,     0,     0,
+       0,     6,    39,     0,     0,    43,     0,     0,    17,    29,
        0,     0,     0,     0,     0,     0,     0,     0,     0,     0,
       13,    15,     8,    11,     0,    26,    22,    23,    24,    25,
-       0,    38,     0,    16,     0,    44,     0,     0,    36,    31,
+       0,    38,     0,    16,     0,    42,     0,     0,    36,    31,
       30,    32,    33,    34,    35,    28,    27,     0,    21,    39,
-       0,    41,    18,    12,    14,    40,     0,    42,     7
+       0,    43,    18,    12,    14,    40,     0,    44,     7
 };
 
   /* YYPGOTO[NTERM-NUM].  */
 static const yytype_int8 yypgoto[] =
 {
      -31,   -31,   -31,   111,   -31,   -30,   110,    -9,    -7,    -5,
-     -31,    53,    52,   112
+     -31,    53,   112,    52
 };
 
   /* YYDEFGOTO[NTERM-NUM].  */
 static const yytype_int8 yydefgoto[] =
 {
       -1,     3,     4,     5,     6,    16,    33,    17,    30,    31,
-      43,    71,    75,    46
+      43,    71,    46,    75
 };
 
   /* YYTABLE[YYPACT[STATE-NUM]] -- What to do in state STATE-NUM.  If
@@ -639,12 +639,12 @@ static const yytype_uint8 yystos[] =
        3,     6,     7,     9,    11,    31,    39,    41,    37,     3,
        4,    28,    42,    28,    13,    28,    28,    42,    14,    28,
       42,    43,    43,    40,    41,    28,    42,    23,    24,    25,
-      26,    27,     3,    44,    42,    42,    47,    42,    27,    43,
+      26,    27,     3,    44,    42,    42,    46,    42,    27,    43,
       42,    43,    17,    18,    19,    20,    21,    22,    15,    16,
-      39,    39,    32,    40,    47,    29,    42,    42,    42,    42,
-      33,    45,    29,    27,    33,    46,    29,    29,    29,    42,
+      39,    39,    32,    40,    46,    29,    42,    42,    42,    42,
+      33,    45,    29,    27,    33,    47,    29,    29,    29,    42,
       42,    42,    42,    42,    42,    43,    43,    10,    29,     3,
-      30,    42,    27,    27,    39,    45,     8,    46,    39
+      30,    42,    27,    27,    39,    45,     8,    47,    39
 };
 
   /* YYR1[YYN] -- Symbol number of symbol that rule YYN derives.  */
@@ -664,7 +664,7 @@ static const yytype_uint8 yyr2[] =
        0,     2,     5,     3,     5,     3,     4,     3,     5,     1,
        1,     4,     3,     3,     3,     3,     3,     3,     3,     2,
        3,     3,     3,     3,     3,     3,     3,     0,     2,     0,
-       3,     0,     3,     0,     2
+       3,     0,     2,     0,     3
 };
 
 
@@ -1582,10 +1582,6 @@ yyreduce:
 
   case 42:
 #line 143 "simple.y" /* yacc.c:1646  */
-<<<<<<< HEAD
-    {(yyval.lparami)=A_LparamiP(S_Symbol((yyvsp[-1].exp)),(yyvsp[0].lparami));}
-#line 1557 "y.tab.c" /* yacc.c:1646  */
-=======
     {(yyval.parami)=A_ParamiP((yyvsp[-1].exp),(yyvsp[0].lparami));}
 #line 1587 "y.tab.c" /* yacc.c:1646  */
     break;
@@ -1594,18 +1590,12 @@ yyreduce:
 #line 146 "simple.y" /* yacc.c:1646  */
     {}
 #line 1593 "y.tab.c" /* yacc.c:1646  */
->>>>>>> c9db9de3c8c2255ec89cf80eb67dec8f2f94a006
     break;
 
   case 44:
 #line 147 "simple.y" /* yacc.c:1646  */
-<<<<<<< HEAD
-    {(yyval.parami)=A_ParamiP(S_Symbol((yyvsp[-1].exp)),(yyvsp[0].lparami));}
-#line 1563 "y.tab.c" /* yacc.c:1646  */
-=======
     {(yyval.lparami)=A_LparamiP((yyvsp[-1].exp),(yyvsp[0].lparami));}
 #line 1599 "y.tab.c" /* yacc.c:1646  */
->>>>>>> c9db9de3c8c2255ec89cf80eb67dec8f2f94a006
     break;
 
 

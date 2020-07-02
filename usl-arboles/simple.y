@@ -139,17 +139,6 @@ lparam:											{}
 	| ',' ID lparam 						{$$=A_LparamdP(S_Symbol($2),$3);}
 	;
 
-<<<<<<< HEAD
-lparami:
-	| ',' exp lparami 						{$$=A_LparamiP(S_Symbol($2),$3);}
-	;
-
-parami:
-	| exp lparami 							{$$=A_ParamiP(S_Symbol($1),$2);}
-;
-
-
-=======
 parami:											{}
 	| exp lparami 							{$$=A_ParamiP($1,$2);}
 ;
@@ -157,4 +146,3 @@ parami:											{}
 lparami:										{}
 	| ',' exp lparami 						{$$=A_LparamiP($2,$3);}
 	;
->>>>>>> c9db9de3c8c2255ec89cf80eb67dec8f2f94a006

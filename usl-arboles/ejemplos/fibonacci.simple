@@ -1,0 +1,22 @@
+--- 
+    Este es un programa que calcula el enesimo 
+    numero de la sucesion de Fibonacci.
+---
+
+n=5;
+
+def Fibonacci (n):entero{
+    si n ==0 regresa 0;
+    si n ==1 regresa 1;
+    si n >=2 regresa Fibonacci(n-1)+Fibonacci(n-2);
+}
+
+{
+	n = 5;
+	fibo = Fibonacci(5);
+	despliega('el termino ');
+	despliega(n);
+	despliega(' de Fibonacci es:');
+	despliega(fibo);
+	despliega('\n');
+}
